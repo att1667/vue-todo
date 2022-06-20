@@ -7,16 +7,19 @@
                 :class="{ active: index == currentIndex }"
                 v-for="(tutorial, index) in tutorials"
                 :key="index"
+                 @click="setActiveTutorial(tutorial, index)"
                 >
                     {{tutorial.title}}
                 </li>
             </ul>
         </div>
         <div class="col-md-6">
-            <div>
-                <tutorial-details />
+            <div v-if="currentTutorial">
+                <tutorial-details 
+                :tutorial="currentTutorial"
+                @refreshList="refreshList"/>
             </div>
-            <div>
+            <div v-else>
                 <br/>
                 <p>자세히 보기</p>
             </div>
@@ -26,8 +29,13 @@
 
 <script>
 import TutorialDataServices from '@/services/TutorialDataServices'
+import TutorialDetails from '@/components/Tutorial.vue'
+
 export default {
     name: "tutorials-list",
+    components: {
+        TutorialDetails
+    },
     data() {
         return {
             tutorials: [],

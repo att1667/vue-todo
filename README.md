@@ -23,3 +23,20 @@ npm run lint
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 # vue-todo
+### firebase.js파일로 firebase 설정
+```
+import firebase from "firebase/app";
+import "firebase/firestore";
+
+let config = {
+    apiKey: "xxx",
+    authDomain: "xxx",
+    projectId: "xxx",
+    storageBucket: "xxx",
+    messagingSenderId: "xxx",
+    appId: "xxx"
+};
+
+firebase.initializeApp(config);
+export default firebase.firestore();
+```
